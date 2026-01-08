@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>History Learning Platform</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body{
+    background: linear-gradient(180deg,#fde7d8,#fff);
+}
+
+/* LOGIN */
+.login{
+    max-width:360px;
+    margin:80px auto;
+    background:#fff;
+    padding:20px;
+    border-radius:16px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.2);
+}
+.login h2{
+    text-align:center;
+    margin-bottom:10px;
+}
+input,select,textarea,button{
+    width:100%;
+    padding:10px;
+    margin-top:8px;
+}
+button{
+    background:#5e548e;
+    color:white;
+    border:none;
+    border-radius:8px;
+}
+
+/* APP CONTAINER */
+.app{
+    max-width:420px;
+    margin:auto;
+    background:#fff;
+    min-height:100vh;
+    border-radius:20px 20px 0 0;
+    overflow:hidden;
+    display:none;
+}
+
+/* HEADER */
+.header{
+    padding:16px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+.logo{
+    font-weight:700;
+    font-size:18px;
+    color:#5e548e;
+}
+.signin-btn{
+    background:#5e548e;
+    color:white;
+    padding:6px 14px;
+    border-radius:20px;
+    font-size:14px;
+}
+
+/* SECTIONS */
+.section{
+    display:none;
+    padding:20px;
+    padding-bottom:90px;
+}
+
+/* HERO */
+.hero h1{
+    font-size:28px;
+    line-height:1.2;
+    color:#222;
+}
+.hero h1 span{
+    color:#52b788;
+}
+.hero p{
+    color:#666;
+    font-size:14px;
+    margin-top:10px;
+}
+.search-box{
+    display:flex;
+    margin-top:15px;
+}
+.search-box input{
+    flex:1;
+    padding:10px;
+    border-radius:20px 0 0 20px;
+    border:1px solid #ddd;
+}
+.search-box button{
+    border-radius:0 20px 20px 0;
+}
+
+/* HERO IMAGE */
+.hero-img{
+    text-align:center;
+    margin-top:20px;
+}
+.hero-img img{
+    width:90%;
+    max-width:260px;
+}
+
+/* CARDS */
+.cards{
+    margin-top:20px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+.card{
+    background:#f7f7ff;
+    padding:14px;
+    border-radius:14px;
+}
+.card h3{
+    color:#5e548e;
+}
+.card p{
+    font-size:12px;
+    color:#555;
+}
+
+/* LEARNING */
+.box{
+    background:#fff;
+    padding:15px;
+    border-radius:14px;
+    margin-bottom:15px;
+    box-shadow:0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* NAV */
+nav{
+    display:flex;
+    justify-content:space-around;
+    background:#1d3557;
+    color:white;
+    position:fixed;
+    bottom:0;
+    width:100%;
+    max-width:420px;
+}
+nav div{
+    padding:14px;
+    cursor:pointer;
+    font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div class="login" id="loginBox">
+    <h2>Student Sign In</h2>
+    <input id="name" placeholder="Student Name">
+    <input id="class" placeholder="Class">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">Sign In</button>
+    <p id="error" style="color:red;text-align:center"></p>
+</div>
+
+<!-- MAIN APP -->
+<div class="app" id="app">
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="logo">HistoryLearn</div>
+        <div class="signin-btn">Signed In</div>
+    </div>
+
+    <!-- HOME -->
+    <div class="section" id="home">
+        <div class="hero">
+            <h1>
+                Learn History<br>
+                with <span>Fun and Clarity</span>
+            </h1>
+
+            <p>
+                A learning platform where students explore
+                history class-wise with guidance from expert teachers.
+            </p>
+
+            <div class="search-box">
+                <input placeholder="Search history topic">
+                <button>Search</button>
+            </div>
+
+            <div class="hero-img">
+                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png">
+            </div>
+
+            <div class="cards">
+                <div class="card">
+                    <h3>100+</h3>
+                    <p>History Topics</p>
+                </div>
+                <div class="card">
+                    <h3>Expert</h3>
+                    <p>Teacher Guidance</p>
+                </div>
+                <div class="card">
+                    <h3>Free</h3>
+                    <p>Lifetime Access</p>
+                </div>
+                <div class="card">
+                    <h3>Mobile</h3>
+                    <p>Learn Anywhere</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LEARNING -->
+    <div class="section" id="learning">
+        <div class="box">
+            <h2>Select Learning</h2>
+            <select id="classSelect">
+                <option value="">Select Class</option>
+                <option>Class 9</option>
+                <option>Class 10</option>
+                <option>Class 11</option>
+                <option>Class 12</option>
+            </select>
+
+            <select id="semSelect">
+                <option value="">Select Semester</option>
+                <option>Semester 1</option>
+                <option>Semester 2</option>
+            </select>
+
+            <button onclick="showSyllabus()">Show Syllabus</button>
+        </div>
+
+        <div class="box" id="syllabusBox"></div>
+    </div>
+
+    <!-- STUDENTS -->
+    <div class="section" id="students">
+        <div class="box">
+            <h2>Student Information</h2>
+            <p id="studentInfo"></p>
+        </div>
+    </div>
+
+    <!-- COMMENTS -->
+    <div class="section" id="comments">
+        <div class="box">
+            <h2>Discussion</h2>
+            <textarea id="commentText" placeholder="Write your comment"></textarea>
+            <button onclick="addComment()">Post</button>
+            <ul id="commentList"></ul>
+        </div>
+    </div>
+
+    <!-- NAV -->
+    <nav>
+        <div onclick="show('home')">Home</div>
+        <div onclick="show('learning')">Learning</div>
+        <div onclick="show('students')">Students</div>
+        <div onclick="show('comments')">Comments</div>
+    </nav>
+
+</div>
+
+<script>
+const PASSWORD="Deve123";
+let studentName="",studentClass="";
+
+function login(){
+    if(document.getElementById("password").value===PASSWORD){
+        studentName=document.getElementById("name").value;
+        studentClass=document.getElementById("class").value;
+
+        document.getElementById("loginBox").style.display="none";
+        document.getElementById("app").style.display="block";
+        show("home");
+
+        document.getElementById("studentInfo").innerHTML =
+            "<b>Name:</b> "+studentName+"<br><b>Class:</b> "+studentClass;
+    }else{
+        document.getElementById("error").innerText="Wrong password";
+    }
+}
+
+function show(id){
+    document.querySelectorAll(".section").forEach(s=>s.style.display="none");
+    document.getElementById(id).style.display="block";
+}
+
+function showSyllabus(){
+    const c=document.getElementById("classSelect").value;
+    const s=document.getElementById("semSelect").value;
+    if(c && s){
+        document.getElementById("syllabusBox").innerHTML =
+        "<h3>"+c+" - "+s+"</h3><ul><li>Ancient History</li><li>Medieval History</li><li>Modern History</li></ul>";
+    }
+}
+
+function addComment(){
+    const text=document.getElementById("commentText").value;
+    if(text){
+        const li=document.createElement("li");
+        li.innerHTML="<b>"+studentName+":</b> "+text;
+        document.getElementById("commentList").appendChild(li);
+        document.getElementById("commentText").value="";
+    }
+}
+</script>
+
+</body>
+</html>
